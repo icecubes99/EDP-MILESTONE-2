@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employees {
+  id String @id @default(uuid())
+  employeeSpecialId String @unique
+  firstName String
+  middleName String
+  lastName String
+  barangay String
+  street String
+  city String
+  province String
+  Country String
+  zipCode Int
+  emailAddress String
+  contactNumber String
+  createdAt DateTime @default(now()) 
+  assignment  Assign_Designation[] 
+  leaves Leaves[]
+  employeeSignatory Signatories[] @relation("employeeSignatory")
+  higherSuperiorSignatory Signatories[] @relation("higherSuperiorSignatory")
+  payroll Payroll[]
+} 
+
+model Assign_Designation {
+  id String @id @default(uuid())
+  employee Employees @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId String @unique
+  employeeType String
+  assignmentStatus String
+  designation Designation @relation(fields: [designationId], references: [id])
+  designationId String
+}
+
+model Designation {
+  id String @id @default(uuid())
+  designationName String
+  status String
+  department Department @relation(fields: [departmentId], references: [id])
+  departmentId String
+  assignDesignation Assign_Designation[]
+}
+
+model Department {
+  id String @id @default(uuid())
+  departmentName String
+  status String
+  designation Designation[]
+}
+
+model Leaves {
+  id String @id @default(uuid())
+  employee Employees @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId String
+  leaveType String
+  status String @default("Pending")
+  startDate DateTime
+  endDate DateTime
+  createdAt DateTime @default(now())
+}
+
+model Signatories {
+  id String @id @default(uuid())
+  employee Employees @relation("employeeSignatory", fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId String
+  higherSuperior Employees @relation("higherSuperiorSignatory", fields: [higherSuperiorId], references: [id], onDelete: Cascade)
+  higherSuperiorId String
+  status String
+}
+
+model Payroll {
+  id String @id @default(uuid())
+  employee Employees @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId String
+  periodStart DateTime
+  periodEnd DateTime
+  pay Float
+  createdAt DateTime @default(now())
+  additionalEarnings AdditionalEarnings[]
+  deductions Deductions[]
+  governmentContributions GovernmentContributions[]
+}
+
+model GovernmentContributions {
+  id String @id @default(uuid())
+  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payrollId String
+  governmnentContribution String
+  amount Float
+  createdAt DateTime @default(now())
+}
+
+model AdditionalEarnings {
+  id String @id @default(uuid())
+  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payrollId String
+  typeOfEarnings String
+  amount Float
+  createdAt DateTime @default(now())
+}
+model Deductions {
+  id String @id @default(uuid())
+  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payrollId String
+  typeOfDeductions String
+  amount Float
+  createdAt DateTime @default(now())
+}
