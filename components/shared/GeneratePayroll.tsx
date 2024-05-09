@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import EmployeeSelection from '../ui/EmployeeSelection'
 import ReactDatetimeClass from 'react-datetime';
 import { Moment } from 'moment';
+import ActiveEmployeeSelection from '../ui/ActiveEmployeeSelection';
 
 const GeneratePayroll = () => {
     const [formData, setFormData] = useState({
@@ -91,8 +92,7 @@ const GeneratePayroll = () => {
             <form className='flex flex-col mt-10' onSubmit={handleSubmit}>
                 <div>
                     <h1 className='font-bold text-lg'>Employee</h1>
-                    <EmployeeSelection name='employeeId' onChange={handleInputChange} />
-
+                    <ActiveEmployeeSelection name='employeeId' onChange={handleInputChange} />
                     <h1 className='font-bold text-lg mt-5'>Pay</h1>
                     <input
                         type="number"

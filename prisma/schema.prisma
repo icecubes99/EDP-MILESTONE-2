@@ -27,7 +27,19 @@ model Employees {
   employeeSignatory Signatories[] @relation("employeeSignatory")
   higherSuperiorSignatory Signatories[] @relation("higherSuperiorSignatory")
   payroll Payroll[]
+
+  //Not yet implemented
+  role Role @relation(fields: [roleId], references: [id])
+  roleId String 
 } 
+
+  //Not yet implemented 
+    model Role {
+      id String @id @default(uuid())
+      roleName String  // User or Administrator
+      status String
+      employees Employees[]
+    }
 
 model Assign_Designation {
   id String @id @default(uuid())
@@ -90,7 +102,7 @@ model Payroll {
 
 model GovernmentContributions {
   id String @id @default(uuid())
-  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payroll Payroll @relation(fields: [payrollId], references: [id], onDelete: Cascade)
   payrollId String
   governmnentContribution String
   amount Float
@@ -99,7 +111,7 @@ model GovernmentContributions {
 
 model AdditionalEarnings {
   id String @id @default(uuid())
-  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payroll Payroll @relation(fields: [payrollId], references: [id], onDelete: Cascade)
   payrollId String
   typeOfEarnings String
   amount Float
@@ -107,7 +119,7 @@ model AdditionalEarnings {
 }
 model Deductions {
   id String @id @default(uuid())
-  payroll Payroll @relation(fields: [payrollId], references: [id])
+  payroll Payroll @relation(fields: [payrollId], references: [id], onDelete: Cascade)
   payrollId String
   typeOfDeductions String
   amount Float

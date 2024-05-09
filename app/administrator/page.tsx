@@ -11,7 +11,7 @@ const page = () => {
             <UnivHeader />
             <div className="flex flex-row w-full">
                 <Sidebar />
-                <div className="flex flex-col pt-2 pl-1 w-full">
+                <div className="flex flex-col pt-2 pl-1 w-[80%]">
                     <h1 className="mt-10 text-3xl font-bold text-center">ADMINISTRATOR WINDOW</h1>
                     <div className="flex flex-row">
                         <Link href="/administrator/generatePayroll">
@@ -22,9 +22,17 @@ const page = () => {
                         <h1 className="ml-5 pt-5 text-center text-xl">
                             |
                         </h1>
-                        <Link href="/employeeDetails">
+                        <Link href="/administrator/viewPayrollTable">
                             <h1 className="ml-5 pt-5 text-blue-700 hover:text-violet-600 text-center text-xl">
-                                Generate Payroll
+                                View Payroll Table
+                            </h1>
+                        </Link>
+                        <h1 className="ml-5 pt-5 text-center text-xl">
+                            |
+                        </h1>
+                        <Link href="/administrator/viewPayrollReports">
+                            <h1 className="ml-5 pt-5 text-blue-700 hover:text-violet-600 text-center text-xl">
+                                View Monthy Payroll Reports
                             </h1>
                         </Link>
                     </div>

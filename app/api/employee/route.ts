@@ -9,6 +9,13 @@ export async function GET(request: Request) {
           designation: true,
         },
       },
+      payroll: {
+        include: {
+          deductions: true,
+          additionalEarnings: true,
+          governmentContributions: true,
+        },
+      },
     },
   });
   console.log(employees);

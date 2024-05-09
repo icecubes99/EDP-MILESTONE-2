@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col h-screen w-[336px] p-6 pl-10 bg-indigo-50 ">
+    <div className="flex flex-col min-h-screen w-[336px] p-6 pl-10 bg-indigo-50 ">
       <div className="pb-2 pt-10 pl-2 text-xs font-normal">
         <h2>MENU</h2>
       </div>

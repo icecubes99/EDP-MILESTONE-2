@@ -66,47 +66,54 @@ const ShowEmployeeDetails = () => {
           <table className="border-stone-500 w-full border ">
             <thead>
               <tr className="text-black font-semibold text-lg ">
-                <th className="border px-10 py-2  bg-indigo-50">FIRST NAME</th>
-                <th className="border px-10 py-2  bg-indigo-50">LAST NAME</th>
-                <th className="border px-10 py-2  bg-indigo-50">DESIGNATION</th>
-                <th className="border px-10 py-2 bg-indigo-50">
+                <th className="border  bg-indigo-50">FIRST NAME</th>
+                <th className="border  bg-indigo-50">LAST NAME</th>
+                <th className="border  bg-indigo-50">DESIGNATION</th>
+                <th className="border  bg-indigo-50">
                   EMPLOYEE TYPE
                 </th>
-                <th className="border px-10 py-2 bg-indigo-50">STATUS</th>
-                <th className="border px-10 py-2 bg-indigo-50">EDIT</th>
-                <th className="border px-10 py-2 bg-indigo-50">LEAVE</th>
-                <th className="border px-10 py-2 bg-indigo-50">DELETE</th>
+                <th className="border  bg-indigo-50">STATUS</th>
+                <th className="border  bg-indigo-50">EDIT</th>
+                <th className="border  bg-indigo-50">PAYSLIP</th>
+                <th className="border  bg-indigo-50">LEAVE</th>
+                <th className="border px-5 py-2 bg-indigo-50">DELETE</th>
+
               </tr>
             </thead>
             <tbody>
               {data.map((employee, id) => (
                 <tr key={id}>
-                  <td className="border px-10 py-2 text-center">
+                  <td className="border px-7 py-2 text-center">
                     {employee.lastName}
                   </td>
-                  <td className="border px-10 py-2 text-center">
+                  <td className="border px-7 py-2 text-center">
                     {employee.firstName}
                   </td>
-                  <td className="border px-10 py-2 text-center">
+                  <td className="border px-7 py-2 text-center">
                     {employee.assignment[0]?.designation?.designationName}
                   </td>
-                  <td className="border px-10 py-2 text-center">
+                  <td className="border px-7 py-2 text-center">
                     {employee.assignment[0]?.assignmentStatus}
                   </td>
-                  <td className="border px-10 py-2 text-center">
+                  <td className="border px-7 py-2 text-center">
                     {employee.assignment[0]?.employeeType}
                   </td>
-                  <td className="border px-10 py-2 items-center ">
+                  <td className="border px-7 py-2 items-center ">
                     <div className="text-blue-500 hover:text-violet-600 ">
                       <Link href={`/editEmployee/${employee.id}`}>Edit</Link>
                     </div>
                   </td>
-                  <td className="border px-10 py-2 items-center ">
+                  <td className="border px-7 py-2 items-center ">
+                    <div className="text-blue-500 hover:text-violet-600 ">
+                      <Link href={`/employeeManagement/payslip/${employee.id}`}>View Payslip</Link>
+                    </div>
+                  </td>
+                  <td className="border px-7 py-2 items-center ">
                     <div className="text-blue-500 hover:text-violet-600 ">
                       <Link href={`/employeeManagement/addLeave/${employee.id}`}>Add Leave</Link>
                     </div>
                   </td>
-                  <td className="border px-10 py-2 flex justify-center items-center">
+                  <td className="border px-7 py-2 flex justify-center items-center">
                     <DeleteEmployee id={employee.id} />
                   </td>
                 </tr>

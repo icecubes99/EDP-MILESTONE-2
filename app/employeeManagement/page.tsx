@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <main className="">
       <UnivHeader />
-      <div className="flex flex-row">
+      <div className="flex flex-row w-full">
         <Sidebar />
         <div className="flex flex-col pt-2 pl-1 text-center">
           <h1 className="pt-10 text-3xl font-bold">EMPLOYEE MANAGEMENT</h1>

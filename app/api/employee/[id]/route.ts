@@ -14,6 +14,13 @@ export async function GET(
         include: {
           designation: true,
         }
+      },
+      payroll: {
+        include: {
+          deductions: true,
+          additionalEarnings: true,
+          governmentContributions: true,
+        }
       }
     }
   });
@@ -46,7 +53,14 @@ export async function GET(
     employeeType: employee.assignment && employee.assignment[0] ? employee.assignment[0].employeeType : null,
     designationName: employee.assignment && employee.assignment[0] ? employee.assignment[0].designation.designationName : null,
     assignmentStatus: employee.assignment && employee.assignment[0] ? employee.assignment[0].assignmentStatus : null,
-    assignmentId: employee.assignment && employee.assignment[0] ? employee.assignment[0].id : null
+    assignmentId: employee.assignment && employee.assignment[0] ? employee.assignment[0].id : null,
+
+    payroll: employee.payroll,
+    additionalEarnings: employee.payroll && employee.payroll[0] ? employee.payroll[0].additionalEarnings : null,
+    deductions: employee.payroll && employee.payroll[0] ? employee.payroll[0].deductions : null,
+    governmentContributions: employee.payroll && employee.payroll[0] ? employee.payroll[0].governmentContributions : null,
+
+    periodStart: employee.payroll && employee.payroll[0] ? employee.payroll[0].periodStart : null
   });
 }
 

@@ -3,18 +3,20 @@ import React from "react";
 
 const DeleteEmployee = ({ id }: { id: string }) => {
   const makeApiCall = async () => {
-    const response = await fetch(`/api/employee/${id}`, {
-      method: "DELETE",
-    });
+    if (window.confirm("Are you sure you want to delete this employee?")) {
+      const response = await fetch(`/api/employee/${id}`, {
+        method: "DELETE",
+      });
 
-    if (!response.ok) {
-      // Handle error
-      console.error("Failed to delete employee");
-      return (
-        <div>
-          <h1>Failed to delete employee</h1>
-        </div>
-      );
+      if (!response.ok) {
+        // Handle error
+        console.error("Failed to delete employee");
+        return (
+          <div>
+            <h1>Failed to delete employee</h1>
+          </div>
+        );
+      }
     }
 
     // Handle success
