@@ -87,7 +87,7 @@ const GeneratePayroll = () => {
     return (
         <div className='flex flex-col mt-5 ml-10'>
 
-            <h1 className='pt-10 text-3xl font-bold'>Generate Payroll</h1>
+            <h1 className='pt-10 text-3xl font-bold'>Generate Payslip</h1>
 
             <form className='flex flex-col mt-10' onSubmit={handleSubmit}>
                 <div>

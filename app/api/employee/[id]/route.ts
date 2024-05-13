@@ -12,7 +12,11 @@ export async function GET(
     include: {
       assignment: {
         include: {
-          designation: true,
+          designation: {
+            include: {
+              department: true
+            }
+          },
         }
       },
       payroll: {
@@ -33,6 +37,7 @@ export async function GET(
   ) {
     return NextResponse.json({ error: "Employee or designation not found" });
   }
+  const department = employee.assignment[0].designation.department;
 
   return NextResponse.json({
     id: employee.id,
@@ -54,13 +59,17 @@ export async function GET(
     designationName: employee.assignment && employee.assignment[0] ? employee.assignment[0].designation.designationName : null,
     assignmentStatus: employee.assignment && employee.assignment[0] ? employee.assignment[0].assignmentStatus : null,
     assignmentId: employee.assignment && employee.assignment[0] ? employee.assignment[0].id : null,
-
+    tinId: employee.tinId,
+    sssId: employee.sssId,
+    philhealthId: employee.philhealthId,
+    pagibigId: employee.pagibigId,
     payroll: employee.payroll,
     additionalEarnings: employee.payroll && employee.payroll[0] ? employee.payroll[0].additionalEarnings : null,
     deductions: employee.payroll && employee.payroll[0] ? employee.payroll[0].deductions : null,
     governmentContributions: employee.payroll && employee.payroll[0] ? employee.payroll[0].governmentContributions : null,
 
-    periodStart: employee.payroll && employee.payroll[0] ? employee.payroll[0].periodStart : null
+    departmentName: employee.assignment && employee.assignment[0] ? employee.assignment[0].designation.department.departmentName : null,
+    department
   });
 }
 

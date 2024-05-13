@@ -16,7 +16,7 @@ const page = () => {
                     <div className="flex flex-row">
                         <Link href="/administrator/generatePayroll">
                             <h1 className="ml-10 pt-5 text-blue-700 hover:text-violet-600 text-center text-xl">
-                                Generate Payroll
+                                Generate Payslip
                             </h1>
                         </Link>
                         <h1 className="ml-5 pt-5 text-center text-xl">

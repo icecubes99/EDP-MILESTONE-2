@@ -22,3 +22,17 @@ export async function POST(request: Request) {
 
     return new NextResponse(JSON.stringify(created), { status: 201 });
 }
+
+export async function POSTLAHAT(request: Request) {
+    const json = await request.json();
+
+    const created = await prisma.payroll.create({
+        data: json,
+    });
+
+    const govContri = await prisma.governmentContributions.create({
+        data: json,
+    });
+
+    return new NextResponse(JSON.stringify({ created, govContri }), { status: 201 });
+}

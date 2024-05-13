@@ -21,6 +21,10 @@ model Employees {
   zipCode Int
   emailAddress String
   contactNumber String
+  sssId String?
+  philhealthId String?
+  tinId String?
+  pagibigId String?
   createdAt DateTime @default(now()) 
   assignment  Assign_Designation[] 
   leaves Leaves[]
@@ -29,17 +33,17 @@ model Employees {
   payroll Payroll[]
 
   //Not yet implemented
-  role Role @relation(fields: [roleId], references: [id])
-  roleId String 
+  // role Role @relation(fields: [roleId], references: [id])
+  // roleId String 
 } 
 
-  //Not yet implemented 
-    model Role {
-      id String @id @default(uuid())
-      roleName String  // User or Administrator
-      status String
-      employees Employees[]
-    }
+  // //Not yet implemented 
+  //   model Role {
+  //     id String @id @default(uuid())
+  //     roleName String  // User or Administrator
+  //     status String
+  //     employees Employees[]
+  //   }
 
 model Assign_Designation {
   id String @id @default(uuid())
